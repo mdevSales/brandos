@@ -80,9 +80,9 @@ export async function humanizeObject<T extends Record<string, any>>(
     const value = obj[field]
 
     if (typeof value === 'string') {
-      humanized[field] = await humanizeText(value)
+      humanized[field] = await humanizeText(value) as T[keyof T]
     } else if (Array.isArray(value) && value.every((v) => typeof v === 'string')) {
-      humanized[field] = await humanizeArray(value)
+      humanized[field] = await humanizeArray(value) as T[keyof T]
     }
   }
 
