@@ -18,7 +18,7 @@ export default function LandingPage() {
 
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-100 to-indigo-100 border-2 border-purple-200 mb-8">
             <span className="text-sm text-gray-600">Powered by</span>
-            <span className="text-lg font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">BrandOS ✨</span>
+            <span className="text-lg font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">Southasiaforce DMV</span>
           </div>
 
           <p className="text-xl md:text-2xl text-gray-700 mb-6 max-w-3xl mx-auto leading-relaxed">
