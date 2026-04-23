@@ -113,7 +113,6 @@ ${writingSample || '[Paste your writing sample here]'}`
       title={`Hi ${session.name}! Let's calibrate your voice`}
       description="Help us understand your natural writing style so we can generate content that sounds like you, not generic AI."
       showBack={false}
-      currentStep={1}
     >
       <div className="space-y-6">
         {/* AI Helper Card */}

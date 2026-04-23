@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { ArrowLeft } from 'lucide-react'
-import { ProgressIndicator } from './progress-indicator'
 
 interface StepWrapperProps {
   title: string
@@ -13,10 +12,9 @@ interface StepWrapperProps {
   children: ReactNode
   showBack?: boolean
   onBack?: () => void
-  currentStep?: number
 }
 
-export function StepWrapper({ title, description, children, showBack = true, onBack, currentStep }: StepWrapperProps) {
+export function StepWrapper({ title, description, children, showBack = true, onBack }: StepWrapperProps) {
   const router = useRouter()
 
   const handleBack = () => {
@@ -29,9 +27,6 @@ export function StepWrapper({ title, description, children, showBack = true, onB
 
   return (
     <div className="w-full max-w-4xl mx-auto animate-fade-in">
-      {/* Progress Indicator */}
-      {currentStep && <ProgressIndicator currentStep={currentStep} totalSteps={8} />}
-
       {showBack && (
         <div className="mb-4">
           <Button variant="ghost" onClick={handleBack} size="sm" className="hover:scale-105 transition-transform">
