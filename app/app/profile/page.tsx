@@ -69,8 +69,8 @@ export default function ProfilePage() {
 
   return (
     <StepWrapper
-      title="Profile Rewrite"
-      description="Let's make your LinkedIn profile compelling and clear. This is often the first thing people see."
+      title={`${session.name}, let's rewrite your profile`}
+      description="Fill out the below so we can make your LinkedIn profile compelling and clear."
     >
       <div className="space-y-6">
         <div className="space-y-2">

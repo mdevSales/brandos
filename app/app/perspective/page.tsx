@@ -70,8 +70,8 @@ export default function PerspectivePage() {
 
   return (
     <StepWrapper
-      title="Your Perspective"
-      description="What do you believe that others don't? Your unique viewpoint is what makes your content worth reading."
+      title={`Almost there ${session.name}! What's your unique perspective?`}
+      description="Fill out the below - your unique viewpoint is what makes your content worth reading."
     >
       <div className="space-y-6">
         <div className="space-y-2">

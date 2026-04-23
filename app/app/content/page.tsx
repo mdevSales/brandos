@@ -83,8 +83,8 @@ export default function ContentPage() {
 
   return (
     <StepWrapper
-      title="Content Engine"
-      description="Let's generate specific post ideas and ready-to-use content in your voice."
+      title={`${session.name}, this is the last step I promise!`}
+      description="Fill out the below so we can generate specific post ideas and ready-to-use content in your voice."
     >
       <div className="space-y-6">
         <div className="space-y-2">

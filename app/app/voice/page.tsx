@@ -110,7 +110,7 @@ ${writingSample || '[Paste your writing sample here]'}`
 
   return (
     <StepWrapper
-      title="Voice Calibration"
+      title={`Hi ${session.name}! Let's calibrate your voice`}
       description="Help us understand your natural writing style so we can generate content that sounds like you, not generic AI."
       showBack={false}
     >

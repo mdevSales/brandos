@@ -71,8 +71,8 @@ export default function AuthorityPage() {
 
   return (
     <StepWrapper
-      title="Your Authority"
-      description="Let's highlight your expertise, wins, and credibility. This builds trust and positions you as someone worth listening to."
+      title={`${session.name}, tell us about your wins`}
+      description="Fill out the below so we can highlight your expertise and credibility. This builds trust and positions you as someone worth listening to."
     >
       <div className="space-y-6">
         <div className="space-y-4">

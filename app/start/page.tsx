@@ -11,12 +11,11 @@ import { ArrowRight } from 'lucide-react'
 export default function StartPage() {
   const router = useRouter()
   const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
   const handleStart = async () => {
-    if (!name || !email) {
-      alert('Please enter your name and email')
+    if (!name) {
+      alert('Please enter your name')
       return
     }
 
@@ -27,7 +26,7 @@ export default function StartPage() {
       const response = await fetch('/api/user/create', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email }),
+        body: JSON.stringify({ name, email: `${name.replace(/\s+/g, '_')}@workshop.local` }),
       })
 
       const { userId } = await response.json()
@@ -36,7 +35,7 @@ export default function StartPage() {
       localStorage.setItem('brandos_session', JSON.stringify({
         userId,
         name,
-        email,
+        email: `${name.replace(/\s+/g, '_')}@workshop.local`,
         currentStep: 1,
       }))
 
@@ -64,9 +63,9 @@ export default function StartPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Before we start</CardTitle>
+            <CardTitle>What's your name?</CardTitle>
             <CardDescription>
-              We only need your name and email. Your detailed inputs won't be stored long-term.
+              We'll personalize the experience and reference your name throughout.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -77,27 +76,18 @@ export default function StartPage() {
                 placeholder="John Doe"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && name) {
+                    handleStart()
+                  }
+                }}
               />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="john@example.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <p className="text-xs text-gray-500">
-                We'll email you the final packet. No spam, promise.
-              </p>
             </div>
 
             <div className="pt-4">
               <Button
                 onClick={handleStart}
-                disabled={isLoading || !name || !email}
+                disabled={isLoading || !name}
                 className="w-full"
                 size="lg"
               >
