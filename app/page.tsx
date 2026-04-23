@@ -7,32 +7,37 @@ export default function LandingPage() {
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50">
       <div className="container mx-auto px-4 py-20">
         <div className="max-w-5xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100 text-purple-700 text-sm font-medium mb-8">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100 text-purple-700 text-sm font-medium mb-6">
             <Sparkles className="w-4 h-4" />
-            Privacy-first LinkedIn brand building
+            None of your data is saved anywhere — fully private
           </div>
 
-          <h1 className="text-6xl md:text-7xl font-bold tracking-tight mb-6 bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-700 bg-clip-text text-transparent">
-            BrandOS
+          <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-4 text-gray-900">
+            LinkedIn Brand Building Workshop Guide
           </h1>
 
-          <p className="text-xl md:text-2xl text-gray-600 mb-4 font-medium">
-            Build your LinkedIn brand in one guided session
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-100 to-indigo-100 border-2 border-purple-200 mb-8">
+            <span className="text-sm text-gray-600">Powered by</span>
+            <span className="text-lg font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">BrandOS ✨</span>
+          </div>
+
+          <p className="text-xl md:text-2xl text-gray-700 mb-6 max-w-3xl mx-auto leading-relaxed">
+            This isn't another generic branding tool. It's a guided experience that helps you uncover what makes you different, craft messaging that sounds like you, and leave with everything you need to show up confidently on LinkedIn.
           </p>
 
-          <p className="text-lg text-gray-500 mb-12 max-w-2xl mx-auto">
-            Go from blank profile to confident presence. Get your positioning, rewritten profile, content ideas, and 30-day plan — all in 60 minutes.
+          <p className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
+            In one focused session, you'll go from overwhelmed (or invisible) to clear, positioned, and ready to build momentum. No fluff. Just the framework, the content, and the plan.
           </p>
 
           <Link href="/start">
             <Button size="lg" className="text-lg px-8 py-6 h-auto">
-              Start Building Your Brand
+              Start Building My Brand
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
           </Link>
 
           <p className="text-sm text-gray-500 mt-4">
-            No signup required to start • Takes 45-60 minutes • Download your packet
+            Takes 45-60 minutes • Download your complete packet • Nothing stored after
           </p>
         </div>
 
@@ -41,9 +46,9 @@ export default function LandingPage() {
             <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
               <Target className="w-6 h-6 text-purple-600" />
             </div>
-            <h3 className="text-xl font-semibold mb-3">Guided Experience</h3>
+            <h3 className="text-xl font-semibold mb-3">Guided, Not Generic</h3>
             <p className="text-gray-600">
-              Step-by-step process that helps you clarify your positioning, authority, and unique perspective. No guesswork.
+              A step-by-step process that helps you clarify your positioning, authority, and unique perspective. No guesswork, no templates.
             </p>
           </div>
 
@@ -51,9 +56,9 @@ export default function LandingPage() {
             <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
               <Users className="w-6 h-6 text-indigo-600" />
             </div>
-            <h3 className="text-xl font-semibold mb-3">Voice Calibration</h3>
+            <h3 className="text-xl font-semibold mb-3">Sounds Like You</h3>
             <p className="text-gray-600">
-              Your content sounds like you, not generic AI. We match your natural tone and avoid phrases that feel fake.
+              Voice calibration ensures your content matches your natural tone. No cringe-worthy AI phrases that make people scroll past.
             </p>
           </div>
 
@@ -61,9 +66,9 @@ export default function LandingPage() {
             <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
               <CheckCircle2 className="w-6 h-6 text-purple-600" />
             </div>
-            <h3 className="text-xl font-semibold mb-3">Complete Packet</h3>
+            <h3 className="text-xl font-semibold mb-3">Everything You Need</h3>
             <p className="text-gray-600">
-              Download everything: positioning, rewritten profile, content pillars, 10 post ideas, 3 ready-to-use posts, and your 30-day plan.
+              Walk away with your positioning, rewritten profile, content pillars, 10 post ideas, 3 ready-to-publish posts, and a 30-day plan.
             </p>
           </div>
         </div>
@@ -103,12 +108,9 @@ export default function LandingPage() {
         </div>
 
         <div className="mt-20 text-center">
-          <p className="text-lg text-gray-700 mb-6">
-            Used in live workshops by <strong>Southasiaforce</strong>
-          </p>
           <Link href="/start">
             <Button size="lg" variant="outline" className="text-lg px-8 py-6 h-auto">
-              Get Started Now
+              Start Building My Brand
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
           </Link>
