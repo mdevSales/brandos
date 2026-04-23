@@ -1,6 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk'
 import { VoiceProfile } from '../types'
 import { getSystemPrompt } from './prompts'
+import { humanizeObject } from './humanize'
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -93,7 +94,10 @@ Output as JSON:
   "helpStatement": "I help X do Y through Z"
 }`
 
-  return generateWithClaude({ prompt, voice })
+  const result = await generateWithClaude({ prompt, voice })
+
+  // Humanize the generated content
+  return humanizeObject(result, ['positioningStatements', 'headlines', 'helpStatement'])
 }
 
 export async function generateAuthorityOutputs(
@@ -114,7 +118,10 @@ Output as JSON:
   "credibilityParagraph": "Credibility statement"
 }`
 
-  return generateWithClaude({ prompt, voice })
+  const result = await generateWithClaude({ prompt, voice })
+
+  // Humanize the generated content
+  return humanizeObject(result, ['inventory', 'proofPoints', 'credibilityParagraph'])
 }
 
 export async function generatePerspectiveOutputs(
@@ -134,7 +141,10 @@ Output as JSON:
   "postAngles": ["angle1", "angle2", "angle3", "angle4", "angle5"]
 }`
 
-  return generateWithClaude({ prompt, voice })
+  const result = await generateWithClaude({ prompt, voice })
+
+  // Humanize the generated content
+  return humanizeObject(result, ['contentPillars', 'postAngles'])
 }
 
 export async function generateProfileOutputs(
@@ -154,7 +164,10 @@ Output as JSON:
   "betterRoleDescription": "Enhanced experience description"
 }`
 
-  return generateWithClaude({ prompt, voice })
+  const result = await generateWithClaude({ prompt, voice })
+
+  // Humanize the generated content
+  return humanizeObject(result, ['rewrittenHeadline', 'improvedAbout', 'betterRoleDescription'])
 }
 
 export async function generateContentOutputs(
@@ -173,7 +186,10 @@ Output as JSON:
   "hooks": ["hook1", "hook2", "hook3", "hook4", "hook5"]
 }`
 
-  return generateWithClaude({ prompt, voice, temperature: 0.9 })
+  const result = await generateWithClaude({ prompt, voice, temperature: 0.9 })
+
+  // Humanize the generated content
+  return humanizeObject(result, ['postIdeas', 'fullPosts', 'hooks'])
 }
 
 export async function generatePlanOutputs(voice?: VoiceProfile) {
@@ -186,5 +202,8 @@ Output as JSON:
   "engagementStrategy": "Engagement tactics"
 }`
 
-  return generateWithClaude({ prompt, voice })
+  const result = await generateWithClaude({ prompt, voice })
+
+  // Humanize the generated content
+  return humanizeObject(result, ['weeklyPlan', 'postingCadence', 'engagementStrategy'])
 }
