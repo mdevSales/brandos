@@ -1,0 +1,228 @@
+import jsPDF from 'jspdf'
+import { SessionState } from '../types'
+
+export function generatePacketPDF(data: SessionState): Blob {
+  const doc = new jsPDF()
+
+  let yPos = 20
+
+  // Helper to add text with word wrap
+  const addText = (
+    text: string,
+    fontSize: number = 12,
+    isBold: boolean = false
+  ) => {
+    doc.setFontSize(fontSize)
+    if (isBold) {
+      doc.setFont('helvetica', 'bold')
+    } else {
+      doc.setFont('helvetica', 'normal')
+    }
+
+    const lines = doc.splitTextToSize(text, 170)
+    doc.text(lines, 20, yPos)
+    yPos += lines.length * (fontSize * 0.5) + 5
+  }
+
+  const addHeading = (text: string, size: number = 16) => {
+    if (yPos > 250) {
+      doc.addPage()
+      yPos = 20
+    }
+    addText(text, size, true)
+    yPos += 3
+  }
+
+  const addSection = (title: string, content: string | string[]) => {
+    addHeading(title, 14)
+
+    if (Array.isArray(content)) {
+      content.forEach((item, idx) => {
+        if (yPos > 260) {
+          doc.addPage()
+          yPos = 20
+        }
+        addText(`${idx + 1}. ${item}`)
+      })
+    } else {
+      if (yPos > 260) {
+        doc.addPage()
+        yPos = 20
+      }
+      addText(content)
+    }
+
+    yPos += 8
+  }
+
+  // Title
+  doc.setFillColor(102, 126, 234)
+  doc.rect(0, 0, 210, 40, 'F')
+  doc.setTextColor(255, 255, 255)
+  doc.setFontSize(24)
+  doc.setFont('helvetica', 'bold')
+  doc.text('BrandOS LinkedIn Packet', 20, 25)
+  doc.setFontSize(12)
+  doc.text(`${data.name}`, 20, 33)
+
+  yPos = 50
+  doc.setTextColor(0, 0, 0)
+
+  // Introduction
+  addText(
+    'This packet contains your personalized LinkedIn brand assets. Use this as your guide to build a compelling presence on LinkedIn.',
+    11
+  )
+  yPos += 5
+
+  // Positioning
+  if (data.identityOutputs) {
+    addHeading('Your Positioning', 16)
+
+    if (data.identityOutputs.helpStatement) {
+      addSection('Value Statement', data.identityOutputs.helpStatement)
+    }
+
+    if (data.identityOutputs.positioningStatements) {
+      addSection(
+        'Positioning Options',
+        data.identityOutputs.positioningStatements
+      )
+    }
+  }
+
+  // Profile
+  if (data.profileOutputs) {
+    if (yPos > 200) {
+      doc.addPage()
+      yPos = 20
+    }
+
+    addHeading('LinkedIn Profile', 16)
+
+    if (data.profileOutputs.rewrittenHeadline) {
+      addSection('Headline', data.profileOutputs.rewrittenHeadline)
+    }
+
+    if (data.profileOutputs.improvedAbout) {
+      addSection('About Section', data.profileOutputs.improvedAbout)
+    }
+  }
+
+  // Authority
+  if (data.authorityOutputs) {
+    if (yPos > 200) {
+      doc.addPage()
+      yPos = 20
+    }
+
+    addHeading('Authority & Credibility', 16)
+
+    if (data.authorityOutputs.proofPoints) {
+      addSection('Proof Points', data.authorityOutputs.proofPoints)
+    }
+
+    if (data.authorityOutputs.credibilityParagraph) {
+      addSection(
+        'Credibility Statement',
+        data.authorityOutputs.credibilityParagraph
+      )
+    }
+  }
+
+  // Content Strategy
+  if (data.perspectiveOutputs) {
+    doc.addPage()
+    yPos = 20
+
+    addHeading('Content Strategy', 16)
+
+    if (data.perspectiveOutputs.contentPillars) {
+      addSection('Content Pillars', data.perspectiveOutputs.contentPillars)
+    }
+
+    if (data.perspectiveOutputs.postAngles) {
+      addSection('Post Angles', data.perspectiveOutputs.postAngles)
+    }
+  }
+
+  // Content
+  if (data.contentOutputs) {
+    doc.addPage()
+    yPos = 20
+
+    addHeading('Content Ideas', 16)
+
+    if (data.contentOutputs.postIdeas) {
+      addSection('10 Post Ideas', data.contentOutputs.postIdeas)
+    }
+
+    if (data.contentOutputs.hooks) {
+      addSection('Attention-Grabbing Hooks', data.contentOutputs.hooks)
+    }
+
+    if (data.contentOutputs.fullPosts) {
+      doc.addPage()
+      yPos = 20
+      addHeading('3 Ready-to-Use Posts', 16)
+
+      data.contentOutputs.fullPosts.forEach((post, idx) => {
+        addHeading(`Post ${idx + 1}`, 12)
+        addText(post)
+        yPos += 5
+      })
+    }
+  }
+
+  // 30-Day Plan
+  if (data.plan) {
+    doc.addPage()
+    yPos = 20
+
+    addHeading('Your 30-Day Action Plan', 16)
+
+    if (data.plan.weeklyPlan) {
+      addSection('Weekly Breakdown', data.plan.weeklyPlan)
+    }
+
+    if (data.plan.postingCadence) {
+      addSection('Posting Cadence', data.plan.postingCadence)
+    }
+
+    if (data.plan.engagementStrategy) {
+      addSection('Engagement Strategy', data.plan.engagementStrategy)
+    }
+  }
+
+  // Footer on last page
+  doc.addPage()
+  yPos = 20
+
+  addHeading('Next Steps', 16)
+  addText(
+    '1. Update your LinkedIn profile with your new headline and About section'
+  )
+  addText('2. Schedule your first 3 posts using the content provided')
+  addText('3. Engage with 5-10 posts in your network before posting')
+  addText('4. Follow the 30-day plan to build momentum')
+  addText('5. Track what resonates and adjust your strategy')
+
+  yPos += 10
+  doc.setTextColor(102, 126, 234)
+  doc.setFontSize(10)
+  doc.text('Generated by BrandOS by Southasiaforce', 20, yPos)
+
+  // Convert to blob
+  return doc.output('blob')
+}
+
+export function downloadPDF(blob: Blob, filename: string) {
+  const url = URL.createObjectURL(blob)
+  const link = document.createElement('a')
+  link.href = url
+  link.download = filename
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+  URL.revokeObjectURL(url)
+}
