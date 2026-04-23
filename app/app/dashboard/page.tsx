@@ -1,18 +1,13 @@
 'use client'
 
-import { useState } from 'react'
 import { useSession } from '../../context/session-context'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Download, Mail, CheckCircle2 } from 'lucide-react'
+import { Download, CheckCircle2 } from 'lucide-react'
 import { generatePacketPDF, downloadPDF } from '@/lib/pdf/generate'
 
 export default function DashboardPage() {
   const { session } = useSession()
-  const [emailSent, setEmailSent] = useState(false)
-  const [reminderFrequency, setReminderFrequency] = useState<'light' | 'standard' | 'intensive'>('standard')
 
   const handleDownloadPDF = () => {
     try {
@@ -25,42 +20,6 @@ export default function DashboardPage() {
     }
   }
 
-  const handleEmailPacket = async () => {
-    if (!session.email) {
-      alert('Email not found. Please restart the process.')
-      return
-    }
-
-    try {
-      // In a real implementation, this would upload the PDF and email it
-      // For now, we'll just mark it as sent
-      alert(`Packet will be emailed to: ${session.email}\n\n(Email functionality requires Resend API setup)`)
-      setEmailSent(true)
-    } catch (error) {
-      console.error('Error sending email:', error)
-      alert('Failed to send email. Please try again.')
-    }
-  }
-
-  const handleSavePreferences = async () => {
-    try {
-      const response = await fetch('/api/user/preferences', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userId: session.userId,
-          frequency: reminderFrequency,
-          timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-        }),
-      })
-
-      if (response.ok) {
-        alert('Email preferences saved!')
-      }
-    } catch (error) {
-      console.error('Error saving preferences:', error)
-    }
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50 py-12">
@@ -75,33 +34,19 @@ export default function DashboardPage() {
           </p>
         </div>
 
-        {/* Download & Email Actions */}
+        {/* Download Action */}
         <Card className="mb-8">
           <CardHeader>
             <CardTitle>Get Your Packet</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="grid md:grid-cols-2 gap-4">
-              <Button onClick={handleDownloadPDF} size="lg" className="w-full">
-                <Download className="mr-2 w-5 h-5" />
-                Download PDF Packet
-              </Button>
-              <Button
-                onClick={handleEmailPacket}
-                size="lg"
-                variant="outline"
-                className="w-full"
-                disabled={emailSent}
-              >
-                <Mail className="mr-2 w-5 h-5" />
-                {emailSent ? 'Email Sent!' : 'Email Me The Packet'}
-              </Button>
-            </div>
-            {session.email && (
-              <p className="text-sm text-gray-600 text-center">
-                Packet will be sent to: {session.email}
-              </p>
-            )}
+            <Button onClick={handleDownloadPDF} size="lg" className="w-full">
+              <Download className="mr-2 w-5 h-5" />
+              Download PDF Packet
+            </Button>
+            <p className="text-sm text-gray-600 text-center">
+              Your complete LinkedIn brand guide as a PDF
+            </p>
           </CardContent>
         </Card>
 
@@ -170,49 +115,6 @@ export default function DashboardPage() {
             </Card>
           )}
         </div>
-
-        {/* Email Reminders */}
-        <Card className="mb-8">
-          <CardHeader>
-            <CardTitle>Stay Accountable (Optional)</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <p className="text-gray-600">
-              Get helpful reminders and tips to keep building your LinkedIn presence
-            </p>
-
-            <div className="space-y-3">
-              <Label>Reminder frequency</Label>
-              <div className="grid grid-cols-3 gap-3">
-                <Button
-                  variant={reminderFrequency === 'light' ? 'default' : 'outline'}
-                  onClick={() => setReminderFrequency('light')}
-                >
-                  Light
-                </Button>
-                <Button
-                  variant={reminderFrequency === 'standard' ? 'default' : 'outline'}
-                  onClick={() => setReminderFrequency('standard')}
-                >
-                  Standard
-                </Button>
-                <Button
-                  variant={reminderFrequency === 'intensive' ? 'default' : 'outline'}
-                  onClick={() => setReminderFrequency('intensive')}
-                >
-                  Intensive
-                </Button>
-              </div>
-              <p className="text-xs text-gray-500">
-                Light: Packet only | Standard: Weekly tips | Intensive: 2-3x per week
-              </p>
-            </div>
-
-            <Button onClick={handleSavePreferences} className="w-full">
-              Save Email Preferences
-            </Button>
-          </CardContent>
-        </Card>
 
         {/* Next Steps */}
         <Card className="bg-purple-50 border-purple-200">

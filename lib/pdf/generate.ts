@@ -75,6 +75,41 @@ export function generatePacketPDF(data: SessionState): Blob {
   )
   yPos += 5
 
+  // Why This Matters
+  if (yPos > 240) {
+    doc.addPage()
+    yPos = 20
+  }
+
+  addHeading('Why LinkedIn Branding Matters in Today\'s Job Market', 16)
+
+  doc.setFillColor(253, 246, 178) // Light yellow background
+  doc.rect(15, yPos, 180, 65, 'F')
+
+  yPos += 5
+  addText(
+    '• 87% of recruiters use LinkedIn to evaluate candidates - your profile is often the first impression',
+    11
+  )
+  addText(
+    '• People with complete, branded profiles receive 21x more profile views and 36x more messages',
+    11
+  )
+  addText(
+    '• A strong LinkedIn presence positions you as a thought leader, opening doors to opportunities before you even apply',
+    11
+  )
+  addText(
+    '• Your personal brand is your competitive advantage - it shows not just what you do, but how you think',
+    11
+  )
+  addText(
+    '• Consistent LinkedIn activity builds trust and visibility, making you the obvious choice when opportunities arise',
+    11
+  )
+
+  yPos += 10
+
   // Positioning
   if (data.identityOutputs) {
     addHeading('Your Positioning', 16)
