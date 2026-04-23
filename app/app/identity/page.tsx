@@ -93,6 +93,7 @@ Based on my background, suggest 2-3 positioning statements I could use.`
     <StepWrapper
       title={`Great ${session.name}, now let's define your identity`}
       description="Fill out the below so we can clarify your positioning and unique value. This is the foundation of your LinkedIn brand."
+      currentStep={2}
     >
       <div className="space-y-6">
 
