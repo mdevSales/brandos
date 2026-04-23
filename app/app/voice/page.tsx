@@ -112,6 +112,7 @@ ${writingSample || '[Paste your writing sample here]'}`
     <StepWrapper
       title="Voice Calibration"
       description="Help us understand your natural writing style so we can generate content that sounds like you, not generic AI."
+      showBack={false}
     >
       <div className="space-y-6">
         {/* AI Helper Card */}
