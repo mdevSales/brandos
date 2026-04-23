@@ -10,7 +10,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Slider } from '@/components/ui/slider'
 import { Card, CardContent } from '@/components/ui/card'
-import { ArrowRight, Loader2 } from 'lucide-react'
+import { ArrowRight, Loader2, Lightbulb, Copy, Check } from 'lucide-react'
 
 export default function VoiceCalibrationPage() {
   const router = useRouter()
@@ -32,6 +32,23 @@ export default function VoiceCalibrationPage() {
 
   const [isGenerating, setIsGenerating] = useState(false)
   const [voiceProfile, setVoiceProfile] = useState<any>(null)
+  const [showAIPrompt, setShowAIPrompt] = useState(false)
+  const [copiedPrompt, setCopiedPrompt] = useState(false)
+
+  const aiPrompt = `Help me understand my writing voice for LinkedIn. Analyze this and tell me:
+1. How do I naturally sound? (tone, style)
+2. What makes my writing feel authentic vs. fake?
+3. What words or phrases should I avoid?
+4. Am I more concise or storytelling?
+
+Here's my writing sample:
+${writingSample || '[Paste your writing sample here]'}`
+
+  const handleCopyPrompt = () => {
+    navigator.clipboard.writeText(aiPrompt)
+    setCopiedPrompt(true)
+    setTimeout(() => setCopiedPrompt(false), 2000)
+  }
 
   const handleGenerate = async () => {
     setIsGenerating(true)
@@ -97,6 +114,56 @@ export default function VoiceCalibrationPage() {
       description="Help us understand your natural writing style so we can generate content that sounds like you, not generic AI."
     >
       <div className="space-y-6">
+        {/* AI Helper Card */}
+        <Card className="bg-gradient-to-r from-indigo-50 to-purple-50 border-indigo-200">
+          <CardContent className="pt-6">
+            <div className="flex items-start gap-3">
+              <Lightbulb className="w-5 h-5 text-indigo-600 mt-1 flex-shrink-0" />
+              <div className="flex-1">
+                <h3 className="font-semibold text-gray-900 mb-2">
+                  Not sure how to describe your voice? Ask AI!
+                </h3>
+                <p className="text-sm text-gray-700 mb-3">
+                  Copy this prompt and paste it into ChatGPT, Claude, or Gemini along with a writing sample.
+                </p>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setShowAIPrompt(!showAIPrompt)}
+                  className="bg-white"
+                >
+                  {showAIPrompt ? 'Hide' : 'Show'} AI Prompt
+                </Button>
+                {showAIPrompt && (
+                  <div className="mt-3 p-3 bg-white rounded border border-indigo-200 text-sm">
+                    <pre className="whitespace-pre-wrap font-mono text-xs text-gray-700 mb-3">
+                      {aiPrompt}
+                    </pre>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={handleCopyPrompt}
+                      className="w-full"
+                    >
+                      {copiedPrompt ? (
+                        <>
+                          <Check className="w-4 h-4 mr-2" />
+                          Copied!
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-4 h-4 mr-2" />
+                          Copy Prompt
+                        </>
+                      )}
+                    </Button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Writing Sample */}
         <div className="space-y-2">
           <Label htmlFor="writingSample">
@@ -110,7 +177,7 @@ export default function VoiceCalibrationPage() {
             onChange={(e) => setWritingSample(e.target.value)}
           />
           <p className="text-xs text-gray-500">
-            This helps us match your natural voice and rhythm.
+            💡 Example: "Hey team, wanted to share a quick win from this week. We finally shipped the feature I've been working on for the past month. The response has been incredible - 200+ users activated it in the first 24 hours..."
           </p>
         </div>
 
@@ -124,6 +191,9 @@ export default function VoiceCalibrationPage() {
               value={naturalSound}
               onChange={(e) => setNaturalSound(e.target.value)}
             />
+            <p className="text-xs text-gray-500">
+              💡 Examples: "Direct and to the point" • "Warm and conversational" • "Data-driven but accessible"
+            </p>
           </div>
 
           <div className="space-y-2">
@@ -134,6 +204,9 @@ export default function VoiceCalibrationPage() {
               value={fakeTone}
               onChange={(e) => setFakeTone(e.target.value)}
             />
+            <p className="text-xs text-gray-500">
+              💡 Examples: "Generic motivational speak" • "Corporate buzzword soup" • "Forced enthusiasm"
+            </p>
           </div>
 
           <div className="space-y-2">
@@ -144,6 +217,9 @@ export default function VoiceCalibrationPage() {
               value={bannedWords}
               onChange={(e) => setBannedWords(e.target.value)}
             />
+            <p className="text-xs text-gray-500">
+              💡 Examples: synergy, leverage, disruptive, rockstar, ninja, guru, hustle
+            </p>
           </div>
 
           <div className="space-y-2">
@@ -154,6 +230,9 @@ export default function VoiceCalibrationPage() {
               value={toneToAvoid}
               onChange={(e) => setToneToAvoid(e.target.value)}
             />
+            <p className="text-xs text-gray-500">
+              💡 Examples: "Humble-bragging" • "Overly salesy" • "Preachy or self-important"
+            </p>
           </div>
 
           <div className="space-y-2">
