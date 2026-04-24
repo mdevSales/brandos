@@ -117,9 +117,30 @@ export default function LandingPage() {
               <p className="text-gray-700">of people who switched jobs found them on LinkedIn — most started looking before they needed to</p>
             </div>
           </div>
-          <div className="bg-indigo-50 border-2 border-indigo-200 rounded-xl p-6 text-center">
-            <p className="text-lg text-gray-800 leading-relaxed">
-              <strong>The reality:</strong> People at work are looking you up on LinkedIn. Your boss, your teammates, recruiters at companies you haven&apos;t even heard of yet. If your profile is blank or generic, you&apos;re leaving opportunities on the table.
+          <div className="bg-indigo-50 border-2 border-indigo-200 rounded-xl p-6">
+            <h3 className="text-xl font-semibold mb-4 text-center">How This Shows Up at Work</h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-semibold text-indigo-900 mb-3">Internal Visibility</h4>
+                <ul className="space-y-2 text-gray-700">
+                  <li><strong>High-impact projects:</strong> Leadership sees your work when looking for people to tap</li>
+                  <li><strong>Cross-team collaboration:</strong> People look you up before reaching out to work together</li>
+                  <li><strong>Peer credibility:</strong> Colleagues see your expertise and what you&apos;ve shipped</li>
+                  <li><strong>Company-wide recognition:</strong> Your wins become visible beyond your immediate team</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold text-indigo-900 mb-3">External Opportunities</h4>
+                <ul className="space-y-2 text-gray-700">
+                  <li><strong>Inbound recruiting:</strong> Recruiters find you before you&apos;re even looking</li>
+                  <li><strong>Speaking invitations:</strong> Conference organizers discover your expertise</li>
+                  <li><strong>Network expansion:</strong> Industry peers connect based on your content</li>
+                  <li><strong>Side opportunities:</strong> Consulting, advisory roles, partnerships surface naturally</li>
+                </ul>
+              </div>
+            </div>
+            <p className="text-center text-gray-800 mt-6 leading-relaxed">
+              <strong>Bottom line:</strong> A strong LinkedIn presence compounds over time. Every post, every profile view, every connection builds momentum that creates opportunities you didn&apos;t even know existed.
             </p>
           </div>
         </div>
