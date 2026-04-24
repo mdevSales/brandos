@@ -100,7 +100,6 @@ export default function LandingPage() {
         <div className="mt-20 max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-8">Why LinkedIn branding matters at work</h2>
           <div className="bg-indigo-50 border-2 border-indigo-200 rounded-xl p-6">
-            <h3 className="text-xl font-semibold mb-4 text-center">How This Shows Up at Work</h3>
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <h4 className="font-semibold text-indigo-900 mb-3">Internal Visibility</h4>
@@ -119,9 +118,6 @@ export default function LandingPage() {
                 </ul>
               </div>
             </div>
-            <p className="text-center text-gray-800 mt-6 leading-relaxed">
-              <strong>Bottom line:</strong> A strong LinkedIn presence compounds over time. Every post, every profile view, every connection builds momentum that creates opportunities you didn&apos;t even know existed.
-            </p>
           </div>
         </div>
 
