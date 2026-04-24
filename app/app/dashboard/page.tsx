@@ -110,7 +110,7 @@ export default function DashboardPage() {
                   <div className="flex-1 mt-4">
                     <h3 className="text-2xl font-bold text-gray-900 mb-2">{session.name}</h3>
                     <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
-                      <p className="text-lg text-gray-800 font-medium">{session.profileOutputs.rewrittenHeadline}</p>
+                      <p className="text-lg text-gray-800 font-medium">{session.profileOutputs?.rewrittenHeadline}</p>
                     </div>
                   </div>
                 </div>
@@ -122,7 +122,7 @@ export default function DashboardPage() {
                     <Button
                       variant="ghost"
                       size="sm"
-                      onClick={() => handleCopy(session.profileOutputs.improvedAbout, 'about')}
+                      onClick={() => handleCopy(session.profileOutputs?.improvedAbout || '', 'about')}
                     >
                       <Copy className="w-4 h-4 mr-2" />
                       {copiedSection === 'about' ? 'Copied!' : 'Copy'}
@@ -130,7 +130,7 @@ export default function DashboardPage() {
                   </div>
                   <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
                     <p className="text-gray-700 whitespace-pre-line leading-relaxed">
-                      {session.profileOutputs.improvedAbout}
+                      {session.profileOutputs?.improvedAbout}
                     </p>
                   </div>
                 </div>
@@ -161,14 +161,14 @@ export default function DashboardPage() {
                 <CardContent className="pt-6">
                   <div className="bg-purple-50 border-l-4 border-purple-500 p-4 rounded mb-4">
                     <p className="text-gray-800 font-medium leading-relaxed">
-                      {session.identityOutputs.helpStatement}
+                      {session.identityOutputs?.helpStatement}
                     </p>
                   </div>
                   <Button
                     variant="outline"
                     size="sm"
                     className="w-full"
-                    onClick={() => handleCopy(session.identityOutputs.helpStatement, 'positioning')}
+                    onClick={() => handleCopy(session.identityOutputs?.helpStatement || '', 'positioning')}
                   >
                     <Copy className="w-4 h-4 mr-2" />
                     {copiedSection === 'positioning' ? 'Copied!' : 'Copy Positioning'}
