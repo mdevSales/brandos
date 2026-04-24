@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrandOS Workshop - Southasiaforce DMV</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Atkinson Hyperlegible', sans-serif;
+            background: linear-gradient(135deg, #f5f3ff 0%, #ffffff 50%, #eef2ff 100%);
+            color: #1f2937;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Crimson Pro', serif;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            position: relative;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Title Slide */
+        .title-slide {
+            background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .title-slide h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .title-slide .subtitle {
+            font-size: 1.5rem;
+            opacity: 0.95;
+            margin-bottom: 2rem;
+        }
+
+        .title-slide .presenter {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-top: 3rem;
+        }
+
+        /* Content Slides */
+        .content-slide h2 {
+            font-size: 3rem;
+            color: #7c3aed;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .content-slide h3 {
+            font-size: 2rem;
+            color: #4f46e5;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #7c3aed, #4f46e5);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+
+        .card p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* Stats */
+        .stat-box {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-left: 4px solid #f59e0b;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+
+        .stat-box strong {
+            color: #92400e;
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Process Steps */
+        .process-step {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #7c3aed, #4f46e5);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+
+        .step-content p {
+            color: #6b7280;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        /* Bullet Points */
+        .bullet-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .bullet-list li {
+            padding: 1rem 1.5rem;
+            margin: 0.5rem 0;
+            background: white;
+            border-left: 4px solid #7c3aed;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .bullet-list li::before {
+            content: "✓";
+            color: #16a34a;
+            font-weight: bold;
+            margin-right: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Navigation */
+        .nav-controls {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #7c3aed, #4f46e5);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+
+        .nav-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(124, 58, 237, 0.2);
+            z-index: 1000;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #7c3aed, #4f46e5);
+            transition: width 0.3s;
+        }
+
+        /* Slide Counter */
+        .slide-counter {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-weight: bold;
+            color: #7c3aed;
+            z-index: 1000;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #ddd6fe, #e0e7ff);
+            border: 2px solid #7c3aed;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .highlight-box h3 {
+            color: #7c3aed;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-box p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        /* URL Display */
+        .url-box {
+            background: #1f2937;
+            color: #10b981;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.8rem;
+            font-family: monospace;
+            margin: 2rem 0;
+            border: 2px solid #10b981;
+        }
+
+        @media (max-width: 768px) {
+            .title-slide h1 {
+                font-size: 2.5rem;
+            }
+
+            .content-slide h2 {
+                font-size: 2rem;
+            }
+
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .process-step {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <!-- Slide Counter -->
+    <div class="slide-counter">
+        <span id="currentSlide">1</span> / <span id="totalSlides">15</span>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="nav-controls">
+        <button class="nav-btn" id="prevBtn" onclick="previousSlide()">←</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextSlide()">→</button>
+    </div>
+
+    <!-- Slides -->
+    <div id="slidesContainer">
+
+        <!-- Slide 1: Title -->
+        <div class="slide title-slide">
+            <div class="slide-content">
+                <h1>LinkedIn Brand Building<br>Workshop Guide</h1>
+                <p class="subtitle">Build a compelling LinkedIn presence in one focused session</p>
+                <p class="subtitle">Powered by BrandOS</p>
+                <p class="presenter">Southasiaforce DMV • Champion Month</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Why This Matters -->
+        <div class="slide content-slide">
+            <div class="slide-content">
+                <h2>Why LinkedIn Branding Matters</h2>
+                <div class="grid-2">
+                    <div class="stat-box">
+                        <strong>87%</strong>
+                        <p>of recruiters use LinkedIn to evaluate candidates — your profile is often the first impression</p>
+                    </div>
+                    <div class="stat-box">
+                        <strong>21x</strong>
+                        <p>more profile views for people with complete, branded profiles</p>
+                    </div>
+                    <div class="stat-box">
+                        <strong>36x</strong>
+                        <p>more messages received with a strong LinkedIn presence</p>
+                    </div>
+                    <div class="stat-box">
+                        <strong>Your brand</strong>
+                        <p>is your competitive advantage — it shows not just what you do, but how you think</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: The Problem -->
+        <div class="slide content-slide">
+            <div class="slide-content">
+                <h2>The Challenge</h2>
+                <div class="highlight-box">
+                    <h3>Most people struggle with:</h3>
+                </div>
+                <ul class="bullet-list">
+                    <li>Not knowing what makes them different</li>
+                    <li>Generic profiles that sound like everyone else</li>
+                    <li>Not knowing what to post about</li>
+                    <li>Feeling overwhelmed by LinkedIn</li>
+                    <li>AI-generated content that sounds fake</li>
+                    <li>No clear plan to build momentum</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 4: The Solution -->
+        <div class="slide content-slide">
+            <div class="slide-content">
+                <h2>BrandOS: Your Solution</h2>
+                <div class="grid-3">
+                    <div class="card">
+                        <div class="card-icon">🎯</div>
+                        <h4>Guided Process</h4>
+                        <p>Step-by-step framework to clarify your positioning, authority, and unique perspective</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🎤</div>
+                        <h4>Voice Calibration</h4>
+                        <p>Content that sounds like YOU, not generic AI. We match your natural tone.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">📦</div>
+                        <h4>Complete Packet</h4>
+                        <p>Everything you need: positioning, profile, content, and 30-day plan</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: The Process Overview -->
+        <div class="slide content-slide">
+            <div class="slide-content">
+                <h2>The 7-Step Process</h2>
+                <p style="text-align: center; font-size: 1.2rem; color: #6b7280; margin-bottom: 2rem;">Takes 45-60 minutes from start to finish</p>
+                <div class="grid-3">
+                    <div class="card">
+                        <div class="card-icon">1</div>
+                        <h4>Voice</h4>
+                        <p>Calibrate your natural tone</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">2</div>
+                        <h4>Identity</h4>
+                        <p>Define your positioning</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">3</div>
+                        <h4>Authority</h4>
+                        <p>Showcase your wins</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">4</div>
+                        <h4>Perspective</h4>
+                        <p>Unique viewpoint</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">5</div>
+                        <h4>Profile</h4>
+                        <p>Rewrite headline & about</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">6</div>
+                        <h4>Content</h4>
+                        <p>Posts, ideas & hooks</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">7</div>
+                        <h4>Plan</h4>
+                        <p>30-day action plan</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Step 1 - Voice -->
+        <div class="slide content-slide">
+            <div class="slide-content">
+                <h2>Step 1: Voice Calibration</h2>
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Match Your Natural Tone</h4>
+                        <p>We analyze your writing style so all generated content sounds like you, not generic AI.</p>
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>What We Ask:</h4>
+                        <ul style="margin-top: 1rem; line-height: 2;">
+                            <li>Writing sample (optional)</li>
+                            <li>How you naturally sound</li>
+                            <li>What feels fake to you</li>
+                            <li>Words you hate</li>
+                            <li>Tone preferences</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>What You Get:</h4>
+                        <ul style="margin-top: 1rem; line-height: 2;">
+                            <li>Voice DNA summary</li>
+                            <li>Banned phrases list</li>
+                            <li>Tone profile</li>
+                            <li>Length preferences</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Step 2 - Identity -->
+        <div class="slide content-slide">
+            <div class="slide-content">
+                <h2>Step 2: Your Identity</h2>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Clarify Your Positioning</h4>
+                        <p>Define who you help, what problems you solve, and what makes you different.</p>
+                    </div>
+                </div>
+                <div class="highlight-box">
+                    <h3>You'll create your "I help" statement:</h3>
+                    <p>"I help [who] do [what] through [how]"</p>
+                </div>
+                <div class="card">
+                    <h4>We Generate:</h4>
+                    <ul style="margin-top: 1rem; line-height: 2;">
+                        <li>3 positioning statement options</li>
+                        <li>3 LinkedIn headline variations</li>
+                        <li>Your core value proposition</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Steps 3-4 -->
+        <div class="slide content-slide">
+            <div class="slide-content">
+                <h2>Steps 3 & 4: Authority & Perspective</h2>
+                <div class="grid-2">
+                    <div>
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Authority</h4>
+                                <p>Showcase your wins, challenges overcome, and expertise</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <h4>You Get:</h4>
+                            <ul style="margin-top: 1rem; line-height: 1.8;">
+                                <li>5 proof points</li>
+                                <li>Credibility statement</li>
+                                <li>Authority inventory</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="process-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Perspective</h4>
+                                <p>Define your unique viewpoint and content themes</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <h4>You Get:</h4>
+                            <ul style="margin-top: 1rem; line-height: 1.8;">
+                                <li>3 content pillars</li>
+                                <li>5 post angles</li>
+                                <li>Your unique lens</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Step 5 - Profile -->
+        <div class="slide content-slide">
+            <div class="slide-content">
+                <h2>Step 5: Profile Rewrite</h2>
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h4>Transform Your LinkedIn Profile</h4>
+                        <p>We rewrite your headline and About section to be compelling and clear.</p>
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>Before:</h4>
+                        <p style="margin-top: 1rem; color: #ef4444;">❌ "Software Engineer at Company"</p>
+                        <p style="margin-top: 0.5rem; color: #ef4444;">❌ Generic buzzword soup</p>
+                        <p style="margin-top: 0.5rem; color: #ef4444;">❌ Unclear value proposition</p>
+                    </div>
+                    <div class="card">
+                        <h4>After:</h4>
+                        <p style="margin-top: 1rem; color: #16a34a;">✅ Clear positioning under 220 characters</p>
+                        <p style="margin-top: 0.5rem; color: #16a34a;">✅ Compelling About section</p>
+                        <p style="margin-top: 0.5rem; color: #16a34a;">✅ Shows who you help & how</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Step 6 - Content -->
+        <div class="slide content-slide">
+            <div class="slide-content">
+                <h2>Step 6: Content Engine</h2>
+                <div class="process-step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <h4>Ready-to-Use Content in Your Voice</h4>
+                        <p>Posts, ideas, and hooks that sound like you and match your brand.</p>
+                    </div>
+                </div>
+                <div class="grid-3">
+                    <div class="card">
+                        <div class="card-icon">📝</div>
+                        <h4>3 Full Posts</h4>
+                        <p>Complete, ready-to-publish posts you can use immediately</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">💡</div>
+                        <h4>10 Post Ideas</h4>
+                        <p>Specific angles and topics to expand on</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🎣</div>
+                        <h4>5 Hooks</h4>
+                        <p>Attention-grabbing opening lines</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Step 7 - Plan -->
+        <div class="slide content-slide">
+            <div class="slide-content">
+                <h2>Step 7: Your 30-Day Plan</h2>
+                <div class="process-step">
+                    <div class="step-number">7</div>
+                    <div class="step-content">
+                        <h4>Actionable Roadmap</h4>
+                        <p>Week-by-week breakdown so you know exactly what to do.</p>
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>Includes:</h4>
+                        <ul style="margin-top: 1rem; line-height: 2;">
+                            <li>Weekly action items</li>
+                            <li>Posting cadence</li>
+                            <li>Engagement strategy</li>
+                            <li>Momentum builders</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>Week 1 Example:</h4>
+                        <ul style="margin-top: 1rem; line-height: 2;">
+                            <li>Update profile</li>
+                            <li>Schedule first 3 posts</li>
+                            <li>Engage 10 min/day</li>
+                            <li>Join 2 relevant groups</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: What You Walk Away With -->
+        <div class="slide content-slide">
+            <div class="slide-content">
+                <h2>What You'll Walk Away With</h2>
+                <ul class="bullet-list">
+                    <li>Your unique positioning and value statement</li>
+                    <li>Rewritten LinkedIn headline (under 220 characters)</li>
+                    <li>Improved About section that tells your story</li>
+                    <li>3 content pillars aligned with your expertise</li>
+                    <li>10 specific post ideas + 3 ready-to-publish posts</li>
+                    <li>5 attention-grabbing hooks</li>
+                    <li>30-day action plan with posting cadence</li>
+                    <li>Complete PDF packet (no data stored after download)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 13: Using with AI Tools -->
+        <div class="slide content-slide">
+            <div class="slide-content">
+                <h2>Extend with AI Tools</h2>
+                <div class="highlight-box">
+                    <h3>🚀 Your PDF works with Gemini, ChatGPT & Claude</h3>
+                    <p>Upload your packet and generate unlimited content that matches your brand</p>
+                </div>
+                <div class="grid-3">
+                    <div class="card">
+                        <div class="card-icon">1</div>
+                        <h4>Download PDF</h4>
+                        <p>Your complete brand packet</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">2</div>
+                        <h4>Upload to AI</h4>
+                        <p>Gemini, ChatGPT, or Claude</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">3</div>
+                        <h4>Generate More</h4>
+                        <p>Endless on-brand content</p>
+                    </div>
+                </div>
+                <div class="card" style="margin-top: 2rem;">
+                    <h4>Example Prompts:</h4>
+                    <ul style="margin-top: 1rem; line-height: 2;">
+                        <li>"Create 5 more post ideas based on my content pillars"</li>
+                        <li>"Write a post about [topic] in my voice"</li>
+                        <li>"Help me respond to a comment on my post"</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Let's Get Started -->
+        <div class="slide content-slide">
+            <div class="slide-content">
+                <h2>Ready to Build Your Brand?</h2>
+                <div class="highlight-box">
+                    <h3>Visit the app to start:</h3>
+                </div>
+                <div class="url-box" id="appUrl">
+                    [YOUR-VERCEL-URL].vercel.app
+                </div>
+                <div class="grid-2" style="margin-top: 2rem;">
+                    <div class="card">
+                        <h4>What You Need:</h4>
+                        <ul style="margin-top: 1rem; line-height: 2;">
+                            <li>45-60 minutes</li>
+                            <li>Your name</li>
+                            <li>Thoughtful answers</li>
+                            <li>Your current LinkedIn info</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>What You'll Get:</h4>
+                        <ul style="margin-top: 1rem; line-height: 2;">
+                            <li>Complete brand packet</li>
+                            <li>Ready-to-use content</li>
+                            <li>30-day action plan</li>
+                            <li>Confidence to show up</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Final -->
+        <div class="slide title-slide">
+            <div class="slide-content">
+                <h1>Questions?</h1>
+                <p class="subtitle" style="margin-top: 2rem;">Let's build your LinkedIn presence together</p>
+                <p class="presenter" style="margin-top: 3rem;">
+                    Southasiaforce DMV<br>
+                    Champion Month LinkedIn Branding Workshop<br>
+                    Powered by BrandOS
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('totalSlides').textContent = totalSlides;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.display = i === index ? 'flex' : 'none';
+            });
+
+            currentSlideIndex = index;
+            document.getElementById('currentSlide').textContent = index + 1;
+
+            // Update progress bar
+            const progress = ((index + 1) / totalSlides) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+
+            // Update button states
+            document.getElementById('prevBtn').disabled = index === 0;
+            document.getElementById('nextBtn').disabled = index === totalSlides - 1;
+        }
+
+        function nextSlide() {
+            if (currentSlideIndex < totalSlides - 1) {
+                showSlide(currentSlideIndex + 1);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlideIndex > 0) {
+                showSlide(currentSlideIndex - 1);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>
