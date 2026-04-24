@@ -97,13 +97,40 @@ export default function LandingPage() {
           </div>
         </div>
 
+        <div className="mt-20 max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-8">Why LinkedIn branding matters at work</h2>
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            <div className="bg-gradient-to-br from-yellow-50 to-orange-50 border-l-4 border-orange-500 p-6 rounded-lg">
+              <p className="text-4xl font-bold text-orange-600 mb-2">87%</p>
+              <p className="text-gray-700">of recruiters use LinkedIn when they&apos;re checking you out</p>
+            </div>
+            <div className="bg-gradient-to-br from-green-50 to-emerald-50 border-l-4 border-green-500 p-6 rounded-lg">
+              <p className="text-4xl font-bold text-green-600 mb-2">4 out of 5</p>
+              <p className="text-gray-700">of LinkedIn users make decisions that matter at work — if they can&apos;t find you, you&apos;re invisible</p>
+            </div>
+            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border-l-4 border-blue-500 p-6 rounded-lg">
+              <p className="text-4xl font-bold text-blue-600 mb-2">40 million</p>
+              <p className="text-gray-700">people look for new opportunities on LinkedIn every week — and they&apos;re probably checking your profile right now</p>
+            </div>
+            <div className="bg-gradient-to-br from-purple-50 to-pink-50 border-l-4 border-purple-500 p-6 rounded-lg">
+              <p className="text-4xl font-bold text-purple-600 mb-2">75%</p>
+              <p className="text-gray-700">of people who switched jobs found them on LinkedIn — most started looking before they needed to</p>
+            </div>
+          </div>
+          <div className="bg-indigo-50 border-2 border-indigo-200 rounded-xl p-6 text-center">
+            <p className="text-lg text-gray-800 leading-relaxed">
+              <strong>The reality:</strong> People at work are looking you up on LinkedIn. Your boss, your teammates, recruiters at companies you haven&apos;t even heard of yet. If your profile is blank or generic, you&apos;re leaving opportunities on the table.
+            </p>
+          </div>
+        </div>
+
         <div className="mt-20 max-w-3xl mx-auto bg-purple-50 border border-purple-100 rounded-xl p-8">
           <h3 className="text-xl font-semibold mb-3">Privacy-first approach</h3>
           <p className="text-gray-700 mb-4">
             We don't store your detailed inputs, writing samples, or generated content. After you download your packet, everything is deleted.
           </p>
           <p className="text-gray-600 text-sm">
-            We only save: your name, email, completion status, and email preferences (if you opt in). That's it.
+            We only save: your name, completion status. That's it.
           </p>
         </div>
 
