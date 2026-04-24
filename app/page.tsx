@@ -99,24 +99,6 @@ export default function LandingPage() {
 
         <div className="mt-20 max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-8">Why LinkedIn branding matters at work</h2>
-          <div className="grid md:grid-cols-2 gap-6 mb-8">
-            <div className="bg-gradient-to-br from-yellow-50 to-orange-50 border-l-4 border-orange-500 p-6 rounded-lg">
-              <p className="text-4xl font-bold text-orange-600 mb-2">87%</p>
-              <p className="text-gray-700">of recruiters use LinkedIn when they&apos;re checking you out</p>
-            </div>
-            <div className="bg-gradient-to-br from-green-50 to-emerald-50 border-l-4 border-green-500 p-6 rounded-lg">
-              <p className="text-4xl font-bold text-green-600 mb-2">4 out of 5</p>
-              <p className="text-gray-700">of LinkedIn users make decisions that matter at work — if they can&apos;t find you, you&apos;re invisible</p>
-            </div>
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border-l-4 border-blue-500 p-6 rounded-lg">
-              <p className="text-4xl font-bold text-blue-600 mb-2">40 million</p>
-              <p className="text-gray-700">people look for new opportunities on LinkedIn every week — and they&apos;re probably checking your profile right now</p>
-            </div>
-            <div className="bg-gradient-to-br from-purple-50 to-pink-50 border-l-4 border-purple-500 p-6 rounded-lg">
-              <p className="text-4xl font-bold text-purple-600 mb-2">75%</p>
-              <p className="text-gray-700">of people who switched jobs found them on LinkedIn — most started looking before they needed to</p>
-            </div>
-          </div>
           <div className="bg-indigo-50 border-2 border-indigo-200 rounded-xl p-6">
             <h3 className="text-xl font-semibold mb-4 text-center">How This Shows Up at Work</h3>
             <div className="grid md:grid-cols-2 gap-6">
@@ -124,7 +106,6 @@ export default function LandingPage() {
                 <h4 className="font-semibold text-indigo-900 mb-3">Internal Visibility</h4>
                 <ul className="space-y-2 text-gray-700">
                   <li><strong>High-impact projects:</strong> Leadership sees your work when looking for people to tap</li>
-                  <li><strong>Cross-team collaboration:</strong> People look you up before reaching out to work together</li>
                   <li><strong>Peer credibility:</strong> Colleagues see your expertise and what you&apos;ve shipped</li>
                   <li><strong>Company-wide recognition:</strong> Your wins become visible beyond your immediate team</li>
                 </ul>
@@ -132,7 +113,6 @@ export default function LandingPage() {
               <div>
                 <h4 className="font-semibold text-indigo-900 mb-3">External Opportunities</h4>
                 <ul className="space-y-2 text-gray-700">
-                  <li><strong>Inbound recruiting:</strong> Recruiters find you before you&apos;re even looking</li>
                   <li><strong>Speaking invitations:</strong> Conference organizers discover your expertise</li>
                   <li><strong>Network expansion:</strong> Industry peers connect based on your content</li>
                   <li><strong>Side opportunities:</strong> Consulting, advisory roles, partnerships surface naturally</li>
